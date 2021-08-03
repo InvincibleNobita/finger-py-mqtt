@@ -4,7 +4,7 @@
 #define GLOW digitalWrite
 #define LED1 2
 #define LED2 4
-#define LED3 16
+#define LED3 5
 
 // WiFi
 const char* ssid = WIFI_SSID;
@@ -43,8 +43,8 @@ void setup() {
       String client_id = "esp8266-client-";
       client_id += String(WiFi.macAddress());
       Serial.printf("The client %s connects to the public mqtt broker\n", client_id.c_str());
-      if (client.connect(client_id.c_str()) {
-          Serial.println("Public emqx mqtt broker connected");
+      if (client.connect(client_id.c_str())) {
+          Serial.println("Public mosquitto mqtt broker connected");
       } else {
           Serial.print("failed with state ");
           Serial.print(client.state());
