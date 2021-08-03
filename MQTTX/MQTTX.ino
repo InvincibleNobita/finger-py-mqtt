@@ -11,10 +11,13 @@ const char* ssid = WIFI_SSID;
 const char* pass = WIFI_PASS;
 
 // MQTT Broker
-const char *mqtt_broker = "broker.emqx.io";
-const char *topic = "esp8266/test";
-const char *mqtt_username = "emqx";
-const char *mqtt_password = "public";
+//const char *mqtt_broker = "broker.emqx.io";
+const char *mqtt_broker = "test.mosquitto.org";
+const char *topic = "MOVEMENT";
+
+// i commented ******************************************************************
+// const char *mqtt_username = "emqx";
+// const char *mqtt_password = "public";
 const int mqtt_port = 1883;
 
 WiFiClient espClient;
@@ -40,7 +43,7 @@ void setup() {
       String client_id = "esp8266-client-";
       client_id += String(WiFi.macAddress());
       Serial.printf("The client %s connects to the public mqtt broker\n", client_id.c_str());
-      if (client.connect(client_id.c_str(), mqtt_username, mqtt_password)) {
+      if (client.connect(client_id.c_str()) {
           Serial.println("Public emqx mqtt broker connected");
       } else {
           Serial.print("failed with state ");
@@ -49,7 +52,8 @@ void setup() {
       }
   }
   // publish and subscribe
-  client.publish(topic, "hello emqx");
+  // i commented ******************************************************************
+  // client.publish(topic, "hello emqx");
   client.subscribe(topic);
 }
 
@@ -72,7 +76,7 @@ void callback(char *topic, byte *payload, unsigned int length) {
            GLOW(LED1,LOW);
            GLOW(LED3,LOW);
     break;
-    case3:GLOW(LED3,HIGH);
+    case 3:GLOW(LED3,HIGH);
           GLOW(LED2,LOW);
           GLOW(LED1,LOW);
     break;
