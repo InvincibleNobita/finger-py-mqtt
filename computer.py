@@ -13,17 +13,17 @@ def comp(num):
         topic="MOVEMENT"
         if(num==5):
                 topic="PACKAGE"
-                mymess="THROW"
+                mymess="5"
         elif(num==4):
-                mymess="REVERSE"
+                mymess="4"
         elif(num==3):
-                mymess="LEFT"
+                mymess="3"
         elif(num==2):
-                mymess="RIGHT"
+                mymess="2"
         elif(num==1):
-                mymess="FORWARD"
+                mymess="1"
         else:
-                mymess="STOP"
+                mymess="0"
 
         
                 
