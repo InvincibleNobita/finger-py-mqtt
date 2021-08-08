@@ -2,22 +2,18 @@
 #include <PubSubClient.h>
 #include "credentials.h"
 #define GLOW digitalWrite
-#define LED1 2
-#define LED2 4
-#define LED3 5
+#define LED1 14
+#define LED2 12
+#define LED3 4
+#define LED4 5
 
 // WiFi
 const char* ssid = WIFI_SSID;
 const char* pass = WIFI_PASS;
 
 // MQTT Broker
-//const char *mqtt_broker = "broker.emqx.io";
 const char *mqtt_broker = "test.mosquitto.org";
 const char *topic = "MOVEMENT";
-
-// i commented ******************************************************************
-// const char *mqtt_username = "emqx";
-// const char *mqtt_password = "public";
 const int mqtt_port = 1883;
 
 WiFiClient espClient;
@@ -30,6 +26,7 @@ void setup() {
   pinMode(LED1,OUTPUT);
   pinMode(LED2,OUTPUT);
   pinMode(LED3,OUTPUT);
+  pinMode(LED4,OUTPUT);
   WiFi.begin(ssid, pass);
   while (WiFi.status() != WL_CONNECTED) {
       delay(500);
@@ -51,9 +48,6 @@ void setup() {
           delay(2000);
       }
   }
-  // publish and subscribe
-  // i commented ******************************************************************
-  // client.publish(topic, "hello emqx");
   client.subscribe(topic);
 }
 
@@ -70,19 +64,29 @@ void callback(char *topic, byte *payload, unsigned int length) {
   {
     case 1:GLOW(LED1,HIGH);
            GLOW(LED2,LOW);
-           GLOW(LED3,LOW);
+           GLOW(LED3,HIGH);
+           GLOW(LED4,LOW);
     break;
-    case 2:GLOW(LED2,HIGH);
-           GLOW(LED1,LOW);
+    case 2:GLOW(LED1,LOW);
+           GLOW(LED2,HIGH);
            GLOW(LED3,LOW);
+           GLOW(LED4,HIGH);
     break;
-    case 3:GLOW(LED3,HIGH);
+    case 3:GLOW(LED1,HIGH);
           GLOW(LED2,LOW);
-          GLOW(LED1,LOW);
+          GLOW(LED3,LOW);
+          GLOW(LED4,HIGH);
     break;
-    default:GLOW(LED3,LOW);
+    case 4: GLOW(LED1,LOW);
+            GLOW(LED2,HIGH);
+            GLOW(LED3,HIGH);
+            GLOW(LED4,LOW);
+    break;
+    default: GLOW(LED1,LOW);
             GLOW(LED2,LOW);
-            GLOW(LED1,LOW); 
+            GLOW(LED3,LOW);
+            GLOW(LED4,LOW);
+    break;
   }
   Serial.println();
   Serial.println("-----------------------");
