@@ -101,12 +101,8 @@ void callback(char *topic, byte *payload, unsigned int length) {
             PWM(ENA,70);
             PWM(ENB,100);
     break;
-    default: AWW(PWM1,0);
-           AWW(PWM2,0);
-    // default: GLOW(LED1,LOW);
-    //         GLOW(LED2,LOW);
-    //         GLOW(LED3,LOW);
-    //         GLOW(LED4,LOW);
+    default:PWM(ENA,0);
+            PWM(ENB,0);
     break;
   }
   Serial.println();
