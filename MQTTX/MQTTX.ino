@@ -70,21 +70,24 @@ void callback(char *topic, byte *payload, unsigned int length) {
   }
   switch(s.toInt())
   {
-    case 1:GLOW(LED1,HIGH);
+    case 1:
+           GLOW(LED1,HIGH);
            GLOW(LED2,LOW);
            GLOW(LED3,HIGH);
            GLOW(LED4,LOW);
            PWM(ENA,100);
            PWM(ENB,100);
     break;
-    case 2:GLOW(LED1,LOW);
+    case 2:
+           GLOW(LED1,LOW);
            GLOW(LED2,HIGH);
            GLOW(LED3,LOW);
            GLOW(LED4,HIGH);
            PWM(ENA,100);
            PWM(ENB,100);
     break;
-    case 3:GLOW(LED1,HIGH);
+    case 3:
+          GLOW(LED1,HIGH);
           GLOW(LED2,LOW);
           GLOW(LED3,LOW);
           GLOW(LED4,HIGH);
@@ -98,10 +101,12 @@ void callback(char *topic, byte *payload, unsigned int length) {
             PWM(ENA,70);
             PWM(ENB,100);
     break;
-    default: GLOW(LED1,LOW);
-            GLOW(LED2,LOW);
-            GLOW(LED3,LOW);
-            GLOW(LED4,LOW);
+    default: AWW(PWM1,0);
+           AWW(PWM2,0);
+    // default: GLOW(LED1,LOW);
+    //         GLOW(LED2,LOW);
+    //         GLOW(LED3,LOW);
+    //         GLOW(LED4,LOW);
     break;
   }
   Serial.println();
