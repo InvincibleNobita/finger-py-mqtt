@@ -2,10 +2,13 @@
 #include <PubSubClient.h>
 #include "credentials.h"
 #define GLOW digitalWrite
+#define PWM analogWrite
 #define LED1 14
 #define LED2 12
-#define LED3 4
-#define LED4 5
+#define LED3 13
+#define LED4 15
+#define ENA 4
+#define ENB 5
 
 // WiFi
 const char* ssid = WIFI_SSID;
@@ -23,14 +26,19 @@ void setup() {
   // Set software serial baud to 115200;
   Serial.begin(115200);
   // connecting to a WiFi network
+  pinMode(LED_BUILTIN,OUTPUT);
   pinMode(LED1,OUTPUT);
   pinMode(LED2,OUTPUT);
   pinMode(LED3,OUTPUT);
   pinMode(LED4,OUTPUT);
+  pinMode(ENA,OUTPUT);
+  pinMode(ENB,OUTPUT);
   WiFi.begin(ssid, pass);
   while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
       Serial.println("Connecting to WiFi..");
+      GLOW(LED_BUILTIN,LOW);
+      delay(1000);
+      GLOW(LED_BUILTIN,HIGH);
   }
   Serial.println("Connected to the WiFi network");
   //connecting to a mqtt broker
@@ -66,21 +74,29 @@ void callback(char *topic, byte *payload, unsigned int length) {
            GLOW(LED2,LOW);
            GLOW(LED3,HIGH);
            GLOW(LED4,LOW);
+           PWM(ENA,100);
+           PWM(ENB,100);
     break;
     case 2:GLOW(LED1,LOW);
            GLOW(LED2,HIGH);
            GLOW(LED3,LOW);
            GLOW(LED4,HIGH);
+           PWM(ENA,100);
+           PWM(ENB,100);
     break;
     case 3:GLOW(LED1,HIGH);
           GLOW(LED2,LOW);
           GLOW(LED3,LOW);
           GLOW(LED4,HIGH);
+          PWM(ENA,100);
+          PWM(ENB,70);
     break;
     case 4: GLOW(LED1,LOW);
             GLOW(LED2,HIGH);
             GLOW(LED3,HIGH);
             GLOW(LED4,LOW);
+            PWM(ENA,70);
+            PWM(ENB,100);
     break;
     default: GLOW(LED1,LOW);
             GLOW(LED2,LOW);
