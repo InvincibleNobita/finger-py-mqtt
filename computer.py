@@ -11,25 +11,23 @@ client.connect(mqttBroker)
 def comp(num):
         print(num)
         topic="MOVEMENT"
-        if(num==5):
-                topic="PACKAGE"
-                mymess="5"
-        elif(num==4):
-                mymess="4"
+        #if(num==5):
+                #topic="PACKAGE"
+                #mymess="5"
+        if(num==4):
+                mymess=4
         elif(num==3):
-                mymess="3"
+                mymess=3
         elif(num==2):
-                mymess="2"
+                mymess=2
         elif(num==1):
-                mymess="1"
+                mymess=1
         else:
-                mymess="0"
-
-        
+                mymess=0
                 
         client.publish(topic,mymess)
         print("just publish  "+str(mymess)+" to "+topic)
-        time.sleep(0.2)
+        time.sleep(0.01)
 
 
         
