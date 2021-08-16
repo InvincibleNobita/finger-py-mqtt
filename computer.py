@@ -27,7 +27,7 @@ def comp(num):
                 
         client.publish(topic,mymess)
         print("just publish  "+str(mymess)+" to "+topic)
-        time.sleep(0.2)
+        time.sleep(0.01)
 
 
         

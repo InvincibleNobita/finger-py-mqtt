@@ -8,28 +8,7 @@ import os
 import time
 import handTrackingModule as htm
 from computer import comp
-def getNumber(ar):
-    s=""
-    for i in ar:
-       s+=str(ar[i]);
-       
-    if(s=="00000"):
-        return (0)
-    elif(s=="01000"):
-        return(1)
-    elif(s=="01100"):
-        return(2) 
-    elif(s=="01110"):
-        return(3)
-    elif(s=="01111"):
-        return(4)
-    elif(s=="11111"):
-        return(5) 
-    elif(s=="01001"):
-        return(6)
-    elif(s=="01011"):
-        return(7)      
- 
+
 wcam,hcam=640,480
 cap=cv2.VideoCapture(0)
 cap.set(3,wcam)
@@ -59,12 +38,12 @@ while True:
                 fingers.append(0)
         
            
-        cv2.rectangle(img,(20,255),(170,425),(0,255,0),cv2.FILLED)  
-        print(getNumber(fingers)) 
-        comp(getNumber(fingers))
+        cv2.rectangle(img,(20,255),(170,425),(0,255,0),cv2.FILLED)
+        print(fingers.count(1))
+        comp(fingers.count(1))
         
-        cv2.putText(img,str(getNumber(fingers)),(45,375),cv2.FONT_HERSHEY_PLAIN,
-                                     10,(255,0,0),20)  
+        cv2.putText(img,str(fingers.count(1)),(45,375),cv2.FONT_HERSHEY_PLAIN,
+                                     10,(255,0,0),20)
         
      
     
