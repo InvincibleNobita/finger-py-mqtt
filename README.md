@@ -7,6 +7,7 @@ Libraries Used:
 <ul>
   <li>ESP8266WiFi.h(Arduino)</li>
   <li>PubSubClient.h(Arduino)</li>
+  <li>opencv-python</li>
   <li>paho.mqtt.client.py(Python)</li>
   <li>mediapipe(Python)</li>
 </ul>
